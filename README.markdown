@@ -1,7 +1,7 @@
 Graph-Visualization
 ===================
 
-This is a fork of  [David Piegza's Graph Visualization.](https://github.com/davidpiegza/Graph-Visualization/blob/master/Graph.js) 
+This is a fork of [David Piegza's Graph Visualization.](https://github.com/davidpiegza/Graph-Visualization/blob/master/Graph.js) 
 The major difference is that disjoint subgraphs now no longer fly off to infinity. This has been accomplished by setting forces at
 each timestep, as opposed to integrating forces (adding to the force each time step.) Repulsive forces are also inversely proportional to 
 the square of the distances between nodes, as opposed to being inversely proportional to the distance between nodes.
@@ -16,63 +16,7 @@ This project uses Three.js for drawing and currently supports a force directed l
 ### Run the example ###
 
 1. Clone or download the project
-2. Open the index_sample.html in a WebGL-compatible browser
+2. Open the disjoint_example.html in a WebGL-compatible browser
 
-You may copy the index_sample.html to index.html and customize it.
-
-Project Description
--------------------
-
-The project consists of
-
-  - a graph structure
-  - a graph layout implementation
-  - and a graph drawing implementation
-
-### Graph Structure ###
-
-This is implemented in graph-visualization/Graph.js. 
-
-Usage:
-
-    var graph = new Graph({limit: 100});  // set maximum number of nodes, optional
-    var node1 = new Node(1);              // create nodes with id
-    var node2 = new Node(2);
-    graph.addNode( node1 );               // add nodes
-    graph.addNode( node2 );
-    graph.addEdge( node1, node2 );        // create edge between nodes
-
-Node:
-
-A node has the properties
-
-  - `ID`
-  - `nodesTo`, Array with connected nodes 
-  - `nodesFrom`, Array with connected nodes 
-  - `position`, Object for x, y, z position, default is {}
-  - `data`, Object with further properties, e.g. properties for a graph layout
-
-For more details have a look at the [source code](https://github.com/davidpiegza/Graph-Visualization/blob/master/Graph.js).
-
-### Graph Layout ###
-
-A graph layout has the basic structure:
-
-    var Layout = Layout || {};
-    Layout.ForceDirected = function(graph, options) {
-      this.init = function() {
-        ...
-      };
-      
-      this.generate = function() {
-        ...
-      };
-    }
-
-The init() function is called after graph creation, the generate() function is called on each render-call.
-
-The graph layout gets the created graph and calculates new positions for the nodes. The generate() function is called repeatedly, so there must be a stop condition after finished calculation.
-
-The graph layout may extend the nodes and edges with custom properties in the data object.
-
-See [force-based-layout.js](https://github.com/davidpiegza/Graph-Visualization/blob/master/layouts/force-based-layout.js) for example usage.
+Look at [David Piegza's Graph Visualization.](https://github.com/davidpiegza/Graph-Visualization/blob/master/Graph.js) for more information. 
+Please contact me if you're interested in any contract code modification! That's what I do as my full time job. Brian Stinar - 505-750-1169.
