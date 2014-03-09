@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Graph Visualization</title>
+    
+        <!-- Useful examples when modifying the code. It took me a while to figure out 
+            the include order, and to troubleshoot an issue with the included Three.js
+        -->
+        <script type ="text/javascript" src="Graph.js"></script>
+        <script type="text/javascript" src="webgl-frameworks/ThreeMin.js"></script>
+        <script type="text/javascript" src="drawings/simple_graph.js"></script>
+        <script type="text/javascript" src="layouts/force-directed-layout.js"></script>
+        <script type="text/javascript" src="utils/Label.js"></script>
+        <script type="text/javascript" src="utils/ObjectSelection.js"></script>
+        <script type="text/javascript" src="utils/Stats.js"></script>
+        <script type="text/javascript" src="utils/requestAnimationFrame.js"></script>
+        <script type="text/javascript" src="utils/threejs-interaction.js"></script>
+
+    
+    <script type="text/javascript">
+        var DISJOINT_EXAMPLE = true; 
+        
+        function createDrawing()
+        {
+            var drawing = new Drawing.SimpleGraph({layout: '3d', selection: true, numNodes: 50, graphLayout:{attraction: 5, repulsion: 5}, showStats: true, showInfo: true});
+        }
+    </script>
+        
+    <style type="text/css"> 
+      body {
+        margin: 0;
+        padding: 0;
+        background-color: #f0f0f0;
+        font: 11px courier;
+        overflow: hidden;
+      }
+      #graph-info {
+        position: absolute;
+        top: 0px;
+        left: 40%;
+        margin: 10px;
+        background-color: #ffffe0;
+        color: #333;
+        padding: 5px 10px;
+      }
+      #options {
+        position: absolute;
+        top: 0;
+        right: 0;
+        z-index: 10;
+      }
+    </style>
+  </head>
+  <body onload="createDrawing()">
+    <div id="options">
+      <form>
+        <p>
+          <label>Drawing</label><br>
+          <select id="drawing_select" onchange="window.location.href = '?' + this.selectedIndex;">
+            <option>2D-Force-Directed</option>
+            <option selected="selected">3D-Force-Directed</option>
+            <option>Sphere Graph</option>
+          </select>
+        </p>
+        <p>
+          <input type="checkbox" id="show_labels" onclick="drawing.show_labels = this.checked;">
+          <label for="show_labels">Show labels</label>
+        </p>
+        <p>
+          <input type="button" value="Stop layout" onclick="drawing.stop_calculating();"> 
+        </p>
+      </form>
+    </div>
+
+    <div style="position: absolute; bottom: 0;">
+      Rotate: Left Mouse Button and Move<br />
+      Zoom: Press Key S + Left Mouse Button and Move<br /> 
+      Drag: Press Key D + Left Mouse Button and Move
+    </div>    
+  </body>
+</html>
