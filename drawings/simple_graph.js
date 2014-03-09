@@ -175,9 +175,24 @@ Drawing.SimpleGraph = function(options) {
           
           drawNode(target_node);
           nodes.push(target_node);
-          if(graph.addEdge(node, target_node)) {
-            drawEdge(node, target_node);
-          }
+          
+          if (("DISJOINT_EXAMPLE" in window) &&(DISJOINT_EXAMPLE === true))
+          {
+            if (Math.random() < 0.8) // Get rid of 20% of the edges, randomly
+            {
+              if(graph.addEdge(node, target_node)) {
+                drawEdge(node, target_node);
+              }
+            }
+        }
+        else
+        {
+            if(graph.addEdge(node, target_node)) {
+                drawEdge(node, target_node);
+            }
+            
+        }
+          
         }
       }
       steps++;
