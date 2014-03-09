@@ -8,11 +8,6 @@ the square of the distances between nodes, as opposed to being inversely proport
 
 So, to test this, check out disjoint_example.html. This sets a global variable var DISJOINT_EXAMPLE = true; to randomly not-add edges.
 
-This project is about 3D graph visualization with WebGL. The aim of this project is to evaluate the possibilities of graph drawing in WebGL.
-
-This project uses Three.js for drawing and currently supports a force directed layout.
-
-
 ### Run the example ###
 
 1. Clone or download the project
