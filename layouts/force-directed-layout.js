@@ -128,13 +128,13 @@ Layout.ForceDirected = function(graph, options) {
               var delta_length_z = Math.max(EPSILON, Math.sqrt((delta_z * delta_z) + (delta_y * delta_y)));
             }
 
-            var force = (repulsion_constant * repulsion_constant) / delta_length;
+            var force = (repulsion_constant * repulsion_constant) / (delta_length * delta_length);
             if(this.layout === "3d") {
-              var force_z = (repulsion_constant * repulsion_constant) / delta_length_z;
+              var force_z = (repulsion_constant * repulsion_constant) / (delta_length_z * delta_length_z);
             }
 
-            node_v.layout.force += force;
-            node_u.layout.force += force;
+            node_v.layout.force = force;
+            node_u.layout.force = force;
 
             node_v.layout.offset_x += (delta_x / delta_length) * force;
             node_v.layout.offset_y += (delta_y / delta_length) * force;
@@ -175,8 +175,8 @@ Layout.ForceDirected = function(graph, options) {
           var force_z = (delta_length_z * delta_length_z) / attraction_constant;
         }
 
-        edge.source.layout.force -= force;
-        edge.target.layout.force += force;
+        edge.source.layout.force = -force;
+        edge.target.layout.force = force;
 
         edge.source.layout.offset_x -= (delta_x / delta_length) * force;
         edge.source.layout.offset_y -= (delta_y / delta_length) * force;
