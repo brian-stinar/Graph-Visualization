@@ -223,17 +223,53 @@ Drawing.SimpleGraph = function(options) {
     }
 
     var area = 5000;
-    draw_object.position.x = Math.floor(Math.random() * (area + area + 1) - area);
-    draw_object.position.y = Math.floor(Math.random() * (area + area + 1) - area);
 
-    if(that.layout === "3d") {
-      draw_object.position.z = Math.floor(Math.random() * (area + area + 1) - area);
+    if ((node.position.x === undefined) && (node.position.y === undefined)) /// AHHHHHH!!! This took me forever to figure out what was going on.
+    {
+        draw_object.position.x = Math.floor(Math.random() * (area + area + 1) - area);
+        draw_object.position.y = Math.floor(Math.random() * (area + area + 1) - area);
+
+        if(that.layout === "3d") 
+        {
+            draw_object.position.z = Math.floor(Math.random() * (area + area + 1) - area);
+        }
+    }
+    
+    else
+    {
+        // jitter to handle zero differences - graph_visualization doesn't handle nodes at the same point very well, yet! 
+        if(node.position.x !== 0)
+        {
+            node.position.x = Math.floor(Math.random() * area * node.position.x);
+        }
+        else
+        {
+            node.position.x = Math.floor(Math.random() * area);
+        }
+        
+        if(node.position.y !== 0)
+        {
+            node.position.y = Math.floor(Math.random() * area * node.position.x);
+        }
+        else
+        {
+            node.position.y = Math.floor(Math.random() * area);
+        }
+        
+        if(node.position.z !== 0)
+        {
+            node.position.z = Math.floor(Math.random() * area * node.position.x);
+        }
+        else
+        {
+            node.position.z = Math.floor(Math.random() * area); 
+        }
     }
 
     draw_object.id = node.id;
     node.data.draw_object = draw_object;
     node.position = draw_object.position;
-    scene.add( node.data.draw_object );
+    scene.add(node.data.draw_object);
   }
 
 
